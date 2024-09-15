@@ -79,7 +79,7 @@ public class ContactBook {
     public boolean repeatedNumbers(){
         Set<Integer> set = new HashSet<>();
 
-        for (int i = 0; i < contacts.length; i++) {
+        for (int i = 0; i < counter; i++) {
             int number = contacts[i].getPhone();
             if (set.contains(number)) {
                 return true;
