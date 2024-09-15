@@ -2,6 +2,9 @@ package contactBook;
 
 import contactBook.Contact;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class ContactBook {
     static final int DEFAULT_SIZE = 100;
 
@@ -60,6 +63,22 @@ public class ContactBook {
         contacts[searchIndex(name)].setEmail(email);
     }
 
+    /**
+     * Command that checks if there are 2 or more contacts with the same number.
+     * @return If there are repeated, returns true, if there isn't, retuns false.
+     */
+    public boolean repeatedNumbers(){
+        Set<Integer> set = new HashSet<>();
+
+        for (int i = 0; i < contacts.length; i++) {
+            int number = contacts[i].getPhone();
+            if (set.contains(number)) {
+                return true;
+            } else set.add(number);
+        }
+        return false;
+    }
+
     private int searchIndex(String name) {
         int i = 0;
         int result = -1;
@@ -92,5 +111,6 @@ public class ContactBook {
     public Contact next() {
         return contacts[currentContact++];
     }
+
 
 }
