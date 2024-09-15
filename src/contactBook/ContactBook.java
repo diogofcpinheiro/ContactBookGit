@@ -1,7 +1,5 @@
 package contactBook;
 
-//test
-
 import contactBook.Contact;
 
 import java.util.HashSet;
@@ -23,6 +21,10 @@ public class ContactBook {
     //Pre: name != null
     public boolean hasContact(String name) {
         return searchIndex(name) >= 0;
+    }
+
+    public boolean hasPhone(int phone) {
+        return searchIndexPhone(phone) >= 0;
     }
 
     public int getNumberOfContacts() {
@@ -53,6 +55,11 @@ public class ContactBook {
     //Pre: name != null && hasContact(name)
     public String getEmail(String name) {
         return contacts[searchIndex(name)].getEmail();
+    }
+
+    //Pre: hasContactPhone(phone)
+    public String getName(int phone) {
+        return contacts[searchIndexPhone(phone)].getName();
     }
 
     //Pre: name != null && hasContact(name)
@@ -87,6 +94,19 @@ public class ContactBook {
         boolean found = false;
         while (i<counter && !found)
             if (contacts[i].getName().equals(name))
+                found = true;
+            else
+                i++;
+        if (found) result = i;
+        return result;
+    }
+
+    private int searchIndexPhone(int phone) {
+        int i = 0;
+        int result = -1;
+        boolean found = false;
+        while (i<counter && !found)
+            if (contacts[i].getPhone() == phone)
                 found = true;
             else
                 i++;
